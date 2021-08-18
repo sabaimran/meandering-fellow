@@ -4,6 +4,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import autoPreProcess from 'svelte-preprocess';
+import typescript from '@rollup/plugin-typescript';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -38,6 +40,7 @@ export default {
 	},
 	plugins: [
 		svelte({
+			preprocess: autoPreProcess,
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production
@@ -68,7 +71,10 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+
+		// Enable typescript
+		typescript({ sourceMap: !production})
 	],
 	watch: {
 		clearScreen: false
