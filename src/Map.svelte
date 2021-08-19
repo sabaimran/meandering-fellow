@@ -1,9 +1,8 @@
 <script lang="ts">
     import * as L from 'leaflet';
-	import * as Constants from './Constants';
-    import * as LocationHelper from './LocationHelper';
-    import * as MapHelper from './MapHelper';
-    import osmtogeojson from './osmtogeojson';
+	import * as Constants from './common/Constants';
+    import * as MapHelper from './common/MapHelper';
+    import osmtogeojson from './common/osmtogeojson';
 
     // Variables used to define the map.
     let map = null;

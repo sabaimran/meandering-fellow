@@ -1,7 +1,5 @@
 import { locationTypeToOverpassQueryMap } from './Constants';
 
-import { getGoogleMapsLink } from './LocationHelper';
-
 // Construct the API request to Overpass to get the nodes in the user's map.
 export function buildOverpassApiUrl(map, locationType) {
     var overpassQuery =  locationTypeToOverpassQueryMap[locationType.text];
@@ -18,6 +16,11 @@ export function buildOverpassApiUrl(map, locationType) {
 // Construct the API request to Geocode to find the user's location.
 export function buildGeocodeApiUri(cityName) {
     return  "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
+}
+
+// Construct the google maps link using the feature's longitude and latitude.
+export function getGoogleMapsLink(feature) {
+    return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[1] + "%2C" + feature.geometry.coordinates[0];
 }
 
 // Construct the pop-up bubbles that are used to render the returned result.
