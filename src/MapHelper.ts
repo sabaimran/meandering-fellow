@@ -12,3 +12,8 @@ export function buildOverpassApiUrl(map, locationType) {
     var resultUrl = baseUrl + query;
     return resultUrl;
 }
+
+// Construct the API request to Geocode to find the user's location.
+export function buildGeocodeApiUri(cityName) {
+    return  "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
+}

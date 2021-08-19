@@ -1,12 +1,14 @@
 <script lang="ts">
     import * as L from 'leaflet';
-	import { getDropdownList } from './Constants';
+	import * as Constants from './Constants';
     import * as LocationHelper from './LocationHelper';
     import * as MapHelper from './MapHelper';
+    import osmtogeojson from './osmtogeojson';
 
     // Variables used to define the map.
     let map = null;
     var resultLayer = null;
+    // Populate with default values.
     let latitude = 53.079;
     let longitude = 8.81308;
     let zoom = 12;
@@ -16,16 +18,15 @@
     let cityName = "";
     let mapContainer = null;
     let locationType = { idx: 1, text: "restaurant" };
-    let locationOptions = getDropdownList();
-  
-    // Initialize the map
+    let locationOptions = Constants.getDropdownList();
+
+    // Initialize the map.
     function createMap(latitude, longitude) {
         let m = L.map(mapContainer, { zoomControl: false }).setView([latitude, longitude], zoom);
         L.tileLayer(
-            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+            Constants.Map.urlTemplate,
             {
-                attribution: `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
-            &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
+                attribution: Constants.Map.mapAttribution,
             subdomains: 'abcd',
             maxZoom: 20,
         }).addTo(m);
@@ -40,12 +41,14 @@
     // Interpret the custom city input.
 	async function customCity() {
         isLoading = true;
+        
+        // If the user hasn't entered a custom city name, try to find them based on their browser location data.
 		if (cityName == "") {
 			getUserLocation();
 			return;
 		}
 
-		const request = "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
+		const request = MapHelper.buildGeocodeApiUri(cityName);
 
 		fetch(request)
 			.then(response => {
@@ -69,7 +72,7 @@
 		isLoading = false;
 	}
 
-	// Callback function when user does not share their location or it is blocked. Defaults to Germany.
+	// Callback function when user does not share their location, it is blocked, or cannot be found.
 	function failLocation(err) {
 		console.warn(`ERROR(${err.code}): ${err.message}`);
 		isLoading = false;
@@ -77,7 +80,6 @@
 
     // Get the user's location.
     function getUserLocation() {
-        isLoading = true;
         navigator.geolocation.getCurrentPosition(successLocation, failLocation);
     }
 
@@ -126,9 +128,9 @@
                 // Construct the pop-up bubbles.
                 var popupContent = "<div class=\"pop-up-content-info\">";
                 popupContent = popupContent + "<div>@id</div><div>" + feature.properties.type + "/" + feature.properties.id + "</div>";
-                var keys = Object.keys(feature.properties.tags);
+                var keys = Object.keys(feature.properties);
                 keys.forEach(function (key) {
-                    popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + key.replace(':', '- ') + "</div><div>" + feature.properties.tags[key] + "</div>";
+                    popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + key.replace(':', '- ') + "</div><div>" + feature.properties[key] + "</div>";
                 });
                 popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + "Google Maps" + "</div><div>" + "<a href=" + LocationHelper.getGoogleMapsLink(feature) + ">link</a>"+ "</div>";
                 popupContent = popupContent + "</div>"
@@ -155,7 +157,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""/>
-    <script src="https://unpkg.com/osmtogeojson@2.2.12/osmtogeojson.js"></script>
     <meta charset="utf-8"/>
 
 </svelte:head>
