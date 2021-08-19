@@ -59,7 +59,6 @@ export default {
 			browser: true,
 			dedupe: ['svelte']
 		}),
-		commonjs(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
@@ -74,9 +73,11 @@ export default {
 		production && terser(),
 
 		// Enable typescript
-		typescript({ sourceMap: !production})
+		typescript({ sourceMap: !production}),
+
+		commonjs()
 	],
 	watch: {
-		clearScreen: false
+		clearScreen: true
 	}
 };
