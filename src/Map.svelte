@@ -125,15 +125,7 @@
                 return {color: "#ff0000"};
             },
             onEachFeature: function (feature, layer) {
-                // Construct the pop-up bubbles.
-                var popupContent = "<div class=\"pop-up-content-info\">";
-                popupContent = popupContent + "<div>@id</div><div>" + feature.properties.type + "/" + feature.properties.id + "</div>";
-                var keys = Object.keys(feature.properties);
-                keys.forEach(function (key) {
-                    popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + key.replace(':', '- ') + "</div><div>" + feature.properties[key] + "</div>";
-                });
-                popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + "Google Maps" + "</div><div>" + "<a href=" + LocationHelper.getGoogleMapsLink(feature) + ">link</a>"+ "</div>";
-                popupContent = popupContent + "</div>"
+                var popupContent = MapHelper.getPopUpBubble(feature);
                 layer.bindPopup(popupContent);
             }
         }).addTo(map);

@@ -1,5 +1,7 @@
 import { locationTypeToOverpassQueryMap } from './Constants';
 
+import { getGoogleMapsLink } from './LocationHelper';
+
 // Construct the API request to Overpass to get the nodes in the user's map.
 export function buildOverpassApiUrl(map, locationType) {
     var overpassQuery =  locationTypeToOverpassQueryMap[locationType.text];
@@ -16,4 +18,18 @@ export function buildOverpassApiUrl(map, locationType) {
 // Construct the API request to Geocode to find the user's location.
 export function buildGeocodeApiUri(cityName) {
     return  "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
+}
+
+// Construct the pop-up bubbles that are used to render the returned result.
+export function getPopUpBubble(feature) {
+    var popupContent = "<div class=\"pop-up-content-info\">";
+    popupContent = popupContent + "<div>@id</div><div>" + feature.properties.type + "/" + feature.properties.id + "</div>";
+    var keys = Object.keys(feature.properties);
+    keys.forEach(function (key) {
+        popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + key.replace(':', '- ') + "</div><div>" + feature.properties[key] + "</div>";
+    });
+    popupContent = popupContent + "<div class=\"pop-up-content-info-title\">" + "Google Maps" + "</div><div>" + "<a href=" + getGoogleMapsLink(feature) + ">link</a>"+ "</div>";
+    popupContent = popupContent + "</div>"
+
+    return popupContent;
 }
