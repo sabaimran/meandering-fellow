@@ -3,6 +3,7 @@
 	import * as Constants from './common/Constants';
     import * as MapHelper from './common/MapHelper';
     import osmtogeojson from './common/osmtogeojson';
+    import Recommendation from './components/Recommendation.svelte';
 
     // Variables used to define the map.
     let map = null;
@@ -18,6 +19,7 @@
     let mapContainer = null;
     let locationType = { idx: 1, text: "restaurant" };
     let locationOptions = Constants.getDropdownList();
+    let recommendation = null;
 
     // Initialize the map.
     function createMap(latitude, longitude) {
@@ -113,10 +115,14 @@
     }
 
     function renderSuggestion(resultAsGeojson) {
+
         // Clear the result layer between every render.
         if (resultLayer != null) {
             resultLayer.clearLayers();
         }
+
+        // Update the current recommendation.
+        recommendation = resultAsGeojson;
 
         // Render the results layer.
         resultLayer = L.geoJSON(resultAsGeojson, {
@@ -168,6 +174,12 @@
         width: 30vw;
     }
 
+    div#mapview {
+        display:grid;
+        grid-template-columns: 1fr 2fr;
+        height: 100vh;
+    }
+
     div.leaflet-bar.title {
         font-size: 30px;
         border: 0px;
@@ -194,14 +206,14 @@
     }
 
 </style>
-  
-<div id="map" use:mapAction>
+
+<div id="mapview">
     <div class="controls-container">
         <div class="leaflet-bar leaflet-control title">Meandering Fellow</div>
         <div id="controls-options" class="leaflet-bar leaflet-control">
             <input id="custom-city" type="text" placeholder="Seattle" bind:value={cityName}>
             <button on:click={customCity}>Find me</button>
-
+    
             <select bind:value={locationType}>
                 {#each locationOptions as locationOption}
                     <option value={locationOption}>
@@ -209,11 +221,14 @@
                     </option>
                 {/each}
             </select>
-
+    
             <button on:click={getSuggestion}>I'm feeling lucky</button>
             {#if isLoading}
                 <div id="loading-text">Loading...</div>
             {/if}
         </div>
-	</div>
+        <Recommendation recommendation={recommendation} />
+    </div>
+    <div id="map" use:mapAction>
+    </div>
 </div>
