@@ -186,6 +186,22 @@
         padding: 8px;
     }
 
+    @media only screen and (max-width: 900px) {
+        div.controls-container {
+            width: 100vw;
+        }
+
+        div#controls-options {
+            grid-template-columns: 1fr;
+            display: grid;
+            grid-gap: 8px;
+            padding: 8px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+            border-radius: 5px;
+            width: auto;
+        }
+    }
+
 </style>
   
 <div id="map" use:mapAction>
