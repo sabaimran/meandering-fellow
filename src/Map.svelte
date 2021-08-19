@@ -11,7 +11,7 @@
     // Populate with default values.
     let latitude = 53.079;
     let longitude = 8.81308;
-    let zoom = 12;
+    let zoom = 16;
 
     // Variables used to interact with the UI.
     let isLoading = false;
@@ -167,17 +167,31 @@
         width: 100%;
     }
 
-    .leaflet-bar {
+    div#controls-options {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: 2fr 1fr;
+        padding: 8px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
         border-radius: 5px;
         width: 30vw;
     }
+
+    div.leaflet-bar.title {
+        font-size: 30px;
+        border: 0px;
+    }
+
+    div.controls-container {
+        padding: 8px;
+    }
+
 </style>
   
 <div id="map" use:mapAction>
     <div class="controls-container">
+        <div class="leaflet-bar leaflet-control title">Meandering Fellow</div>
         <div id="controls-options" class="leaflet-bar leaflet-control">
-            <!-- <form></form> -->
             <input id="custom-city" type="text" placeholder="Seattle" bind:value={cityName}>
             <button on:click={customCity}>Find me</button>
 
