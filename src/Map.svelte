@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import * as L from 'leaflet';
 	import * as Constants from './common/Constants';
     import * as MapHelper from './common/MapHelper';
     import osmtogeojson from './common/osmtogeojson';
-    import Recommendation from './components/Recommendation.svelte';
+    import Recommendation from './components/RecommendationList.svelte';
 
     // Variables used to define the map.
     let map = null;
@@ -11,7 +12,7 @@
     // Populate with default values.
     let latitude = 53.079;
     let longitude = 8.81308;
-    let zoom = 16;
+    let zoom = 14;
 
     // Variables used to interact with the UI.
     let isLoading = false;
@@ -19,7 +20,12 @@
     let mapContainer = null;
     let locationType = { idx: 1, text: "restaurant" };
     let locationOptions = Constants.getDropdownList();
-    let recommendation = null;
+    let recommendationPayload = null;
+
+    // Query the user's location on mount.
+    onMount(async() => {
+		await getUserLocation();
+	})
 
     // Initialize the map.
     function createMap(latitude, longitude) {
@@ -45,7 +51,7 @@
         
         // If the user hasn't entered a custom city name, try to find them based on their browser location data.
 		if (cityName == "") {
-			getUserLocation();
+			await getUserLocation();
 			return;
 		}
 
@@ -80,7 +86,7 @@
 	}
 
     // Get the user's location.
-    function getUserLocation() {
+    async function getUserLocation() {
         navigator.geolocation.getCurrentPosition(successLocation, failLocation);
     }
 
@@ -111,7 +117,10 @@
 				}
 				isLoading = false;
 				renderSuggestion(osmtogeojson(osmDataAsJson));
-			});
+			})
+            .catch((error) => {
+                failLocation(error);
+            })
     }
 
     function renderSuggestion(resultAsGeojson) {
@@ -122,7 +131,7 @@
         }
 
         // Update the current recommendation.
-        recommendation = resultAsGeojson;
+        recommendationPayload = resultAsGeojson;
 
         // Render the results layer.
         resultLayer = L.geoJSON(resultAsGeojson, {
@@ -174,12 +183,6 @@
         width: 30vw;
     }
 
-    div#mapview {
-        display:grid;
-        grid-template-columns: 1fr 2fr;
-        height: 100vh;
-    }
-
     div.leaflet-bar.title {
         font-size: 30px;
         border: 0px;
@@ -206,14 +209,14 @@
     }
 
 </style>
-
-<div id="mapview">
+  
+<div id="map" use:mapAction>
     <div class="controls-container">
         <div class="leaflet-bar leaflet-control title">Meandering Fellow</div>
         <div id="controls-options" class="leaflet-bar leaflet-control">
             <input id="custom-city" type="text" placeholder="Seattle" bind:value={cityName}>
             <button on:click={customCity}>Find me</button>
-    
+
             <select bind:value={locationType}>
                 {#each locationOptions as locationOption}
                     <option value={locationOption}>
@@ -221,14 +224,12 @@
                     </option>
                 {/each}
             </select>
-    
+
             <button on:click={getSuggestion}>I'm feeling lucky</button>
             {#if isLoading}
                 <div id="loading-text">Loading...</div>
             {/if}
         </div>
-        <Recommendation recommendation={recommendation} />
-    </div>
-    <div id="map" use:mapAction>
-    </div>
+        <Recommendation recommendations={recommendationPayload} />
+	</div>
 </div>

@@ -32,3 +32,7 @@ div.pop-up-content-info {
 div.pop-up-content-info-title {
 	color:#4285F4;
 }
+
+p {
+	margin: 0;
+}
