@@ -124,4 +124,8 @@
         padding: 8px;
     }
 
+    p.recommendation-box-item.property-summary.map-link {
+        background-color: #3ee4c0;
+    }
+
 </style>
