@@ -22,4 +22,10 @@
         padding: 8px;
         width: 30vw;
     }
+
+    @media only screen and (max-width: 900px) {
+        div.leaflet-bar.leaflet-control.recommendation-box {
+            width: 90vw;
+        }
+    }
 </style>

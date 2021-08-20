@@ -194,7 +194,7 @@
 
     @media only screen and (max-width: 900px) {
         div.controls-container {
-            width: 100vw;
+            width: auto;
         }
 
         div#controls-options {
@@ -204,7 +204,7 @@
             padding: 8px;
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
             border-radius: 5px;
-            width: auto;
+            width: 90vw;
         }
     }
 

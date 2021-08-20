@@ -66,9 +66,11 @@
             <p class="recommendation-box-item property-summary geographic-address">
                 {constructGeographicAddress(properties)}
             </p>
-            <p class="recommendation-box-item property-summary map-link">
-                <a class="property" target="_blank" href={getGoogleMapsLink(feature)}>Go!</a>
-            </p>
+            <div class="center-align">
+                <p class="recommendation-box-item property-summary map-link">
+                    <a class="property map-link" target="_blank" href={getGoogleMapsLink(feature)}>Go!</a>
+                </p>
+            </div>
         </div>
         {#if verbose}
             <div class="recommendation-box-item property-list">
@@ -100,6 +102,10 @@
         background-color: transparent;
     }
 
+    a.property.map-link {
+        display: inline-block;
+    }
+
     div.recommendation-box.property {
         padding: 4px;
     }
@@ -126,6 +132,10 @@
 
     p.recommendation-box-item.property-summary.map-link {
         background-color: #3ee4c0;
+    }
+
+    div.center-align {
+        text-align: center;
     }
 
 </style>
