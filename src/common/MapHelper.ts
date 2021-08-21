@@ -26,7 +26,7 @@ export function getGoogleMapsLink(feature) {
 // Construct the pop-up bubbles that are used to render the returned result.
 export function getPopUpBubble(feature) {
     var popupContent = "<div class=\"pop-up-content-info\">";
-    popupContent = popupContent + "<div>@id</div><div>" + feature.properties.type + "/" + feature.properties.id + "</div>";
+    popupContent = popupContent + "<div>@id</div><div>" + feature.properties.id + "</div>";
     var keys = Object.keys(feature.properties);
     keys.forEach(function (key) {
         if (key != "id") {

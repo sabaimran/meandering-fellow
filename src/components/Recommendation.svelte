@@ -134,6 +134,10 @@
         background-color: #3ee4c0;
     }
 
+    a.map-link {
+        color: #e7fcec;
+    }
+
     div.center-align {
         text-align: center;
     }
