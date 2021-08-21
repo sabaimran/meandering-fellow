@@ -1,5 +1,6 @@
 <script lang="ts">
     import Recommendation from "./Recommendation.svelte";
+    import { fly } from 'svelte/transition';
 
     export let recommendations;
 
@@ -10,7 +11,7 @@
 </script>
 
 {#if isVisible}
-    <div class="leaflet-bar leaflet-control recommendation-box">
+    <div class="leaflet-bar leaflet-control recommendation-box" transition:fly="{{ y: 20, duration: 2000 }}">
         {#each recommendations.features as feature}
             <Recommendation feature={feature} verbose={false} />
         {/each}
@@ -19,6 +20,7 @@
 
 <style>
     div.leaflet-bar.leaflet-control.recommendation-box {
+        margin-top: 16px;
         padding: 8px;
         width: 30vw;
     }

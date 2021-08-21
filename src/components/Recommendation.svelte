@@ -138,6 +138,10 @@
         color: #e7fcec;
     }
 
+    a.map-link:hover {
+        color: #0d3a17;
+    }
+
     div.center-align {
         text-align: center;
     }

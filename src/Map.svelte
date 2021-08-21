@@ -5,6 +5,7 @@
     import * as MapHelper from './common/MapHelper';
     import osmtogeojson from './common/osmtogeojson';
     import Recommendation from './components/RecommendationList.svelte';
+    import { fade } from 'svelte/transition';
 
     // Variables used to define the map.
     let map = null;
@@ -227,7 +228,7 @@
 
             <button on:click={getSuggestion}>I'm feeling lucky</button>
             {#if isLoading}
-                <div id="loading-text">Loading...</div>
+                <div id="loading-text" transition:fade>Loading...</div>
             {/if}
         </div>
         <Recommendation recommendations={recommendationPayload} />
