@@ -29,7 +29,7 @@ div.pop-up-content-info {
 	grid-gap: 4px;
 }
 
-div.leaflet-bar, div.recommendation-box-item {
+div.leaflet-bar, div.recommendation-box-item, div.pop-up-content-info {
 	font-family: 'Urbanist', sans-serif, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
