@@ -24,8 +24,10 @@ Open up [localhost:5000](http://localhost:5000). You should see Meandering Fello
 Deployed with Vercel. [See site](https://meandering-fellow.vercel.app/).
 
 ## References
-- [Geocode.xyz](https://geocode.xyz) used for interperting lat-long coordinates of cities.
 - [Leaflet](https://leafletjs.com/) for rendering the map.
 - [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) for pulling the relevant data from Open Street Maps.
-- [Sampled Javascript + Leaflet project](https://gist.github.com/tyrasd/45e4a6a44c734497e82ccaae16a9c9ea) for reference of the code for API usage.
 - [Svelte](https://svelte.dev/) for the front-end.
+- [Geocode.xyz](https://geocode.xyz) used for interperting lat-long coordinates of cities.
+- [osmtogeojson](https://tyrasd.github.io/osmtogeojson/) for rendering Overpass results.
+- [Sample Javascript + Leaflet project](https://gist.github.com/tyrasd/45e4a6a44c734497e82ccaae16a9c9ea) for reference of the code for API usage.
+
