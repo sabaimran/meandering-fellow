@@ -1,7 +1,8 @@
 export const locationTypeToOverpassQueryMap = {
     "restaurant": "amenity=restaurant",
+    "coffee": "cuisine=coffee_shop][name!=Starbucks",
     "park": "leisure=park",
-    "railway station": "railway=station",
+    "bookstore": "shop=books",
     "bar": "amenity=bar"
 }
 
@@ -33,5 +34,6 @@ export class OSMNode {
         static street = OSMNode.addrPrefix+"street";
         static website = "website";
         static contactWebsite = "contact:website";
+        static phone = "phone";
     }
 }

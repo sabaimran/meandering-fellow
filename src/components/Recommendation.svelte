@@ -15,12 +15,9 @@
     }
 
     function constructStreetAddress(properties) {
-        return createWord(properties[Constants.OSMNode.Properties.houseNumber]) + 
-            createWord(properties[Constants.OSMNode.Properties.street]);
-    }
-
-    function createWord(word) {
-        return word ? word + " " : "";
+        let houseNumber = properties[Constants.OSMNode.Properties.houseNumber];
+        let streetAddr = properties[Constants.OSMNode.Properties.street];
+        return (houseNumber ? houseNumber + " " : "") + (streetAddr ?? "");
     }
 
     function constructGeographicAddress(properties) {
@@ -45,6 +42,10 @@
         return properties[Constants.OSMNode.Properties.website] || properties[Constants.OSMNode.Properties.contactWebsite];
     }
 
+    function propertyOrEmpty(property) {
+        return property ?? "";
+    }
+
 </script>
 
 {#if isVisible}
@@ -60,6 +61,9 @@
                     </a>
                 </p>
             {/if}
+            <p class="recommendation-box-item property-summary website">
+                {propertyOrEmpty(properties[Constants.OSMNode.Properties.phone])}
+            </p>
             <p class="recommendation-box-item property-summary street-address">
                 {constructStreetAddress(properties)}
             </p>
