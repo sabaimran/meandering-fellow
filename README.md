@@ -1,56 +1,31 @@
-# Random Place Recommender Svelte app
+# Meandering Fellow!
 
-Built with the Svelte project template at https://github.com/sveltejs/template.
+[Meander](https://meandering-fellow.vercel.app/)
 
-It's fruitful to leave some decision-making to randomization in order to leverage some of our capability to explore. Especially if you're living in a city you've been in for a while, randomizing a restaurant to eat out, or a park to visit, can help you get to see some more of those nooks and crannies in the city you don't ordinarily visit.
+It's fruitful to leave some decision-making to randomization in order to satisfy some of our inherent desire to explore. Especially if you've been settled in a city for some time, randomizing some aspects of life can help you get to see some more of those nooks and crannies in the city you don't ordinarily visit. Many of us also suffer from  decision fatigue, wanting to streamline the selection amongst ever-increasing choices.
 
-## Get started
+Meandering Fellow gives you random suggestions without any fore knowledge, based on the area presented in the map. You can look for places like restaurants, coffee shops, or parks. 
 
-Install the dependencies...
+All of the logic for this app is purely being processed on the client side :). For any comments or suggestions, add an issue. I'm actively monitoring for feature requests, suggestions, or bugs.
+
+## Deploy locally
 
 ```bash
-cd svelte-random-recommender
+git clone <repository url>
+cd random-recommender
 npm install
-```
-
-```bash
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Open up [localhost:5000](http://localhost:5000). You should see Meandering Fellow running. Edit a component file in `src`, save it, and the page should automatically reload with your changes.
 
+## See it live!
 
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-#### Deployed
-
-Deployed with Vercel to https://svelte-random-recommender.vercel.app/
+Deployed with Vercel. [See site](https://meandering-fellow.vercel.app/).
 
 ## References
-- https://geocode.xyz for intepreting lat-long coordinations of cities
-- https://leafletjs.com/ for rendering the map
-- https://wiki.openstreetmap.org/wiki/Overpass_API for pulling the relevant data from Open Street Maps
-- https://gist.github.com/tyrasd/45e4a6a44c734497e82ccaae16a9c9ea for reference of the code for API usage
-
+- [Geocode.xyz](https://geocode.xyz) used for interperting lat-long coordinates of cities.
+- [Leaflet](https://leafletjs.com/) for rendering the map.
+- [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) for pulling the relevant data from Open Street Maps.
+- [Sampled Javascript + Leaflet project](https://gist.github.com/tyrasd/45e4a6a44c734497e82ccaae16a9c9ea) for reference of the code for API usage.
+- [Svelte](https://svelte.dev/) for the front-end.
