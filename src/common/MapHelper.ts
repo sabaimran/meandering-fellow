@@ -20,6 +20,12 @@ export function buildGeocodeApiUri(cityName) {
 
 // Construct the google maps link using the feature's longitude and latitude.
 export function getGoogleMapsLink(feature) {
+    console.log(feature);
+    console.log(feature.geometry.coordinates);
+    if (feature.geometry.type == "Polygon") {
+        return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[0][0][1] + "%2C" + feature.geometry.coordinates[0][0][0];
+    }
+
     return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[1] + "%2C" + feature.geometry.coordinates[0];
 }
 
