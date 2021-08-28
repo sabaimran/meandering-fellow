@@ -23,6 +23,9 @@ Open up [localhost:5000](http://localhost:5000). You should see Meandering Fello
 
 Deployed with Vercel. [See site](https://meandering-fellow.vercel.app/).
 
+## Using Delta for git diffs
+You should have [rust installed](https://www.rust-lang.org/learn/get-started). `cargo install git-delta`
+
 ## References
 - [Leaflet](https://leafletjs.com/) for rendering the map.
 - [Overpass API](https://wiki.openstreetmap.org/wiki/Overpass_API) for pulling the relevant data from Open Street Maps.
