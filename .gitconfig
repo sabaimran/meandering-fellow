@@ -7,8 +7,9 @@
 [delta]
     plus-style = "syntax #012800"
     minus-style = "syntax #340001"
-    syntax-theme = Monokai Extended
+    syntax-theme = dark
     navigate = true
+    line-numbers = true
 
 [interactive]
     diffFilter = delta --color-only
