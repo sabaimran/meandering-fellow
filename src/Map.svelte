@@ -15,7 +15,7 @@
     import osmtogeojson from './common/osmtogeojson';
     import Recommendation from './components/RecommendationList.svelte';
     import DropdownLocationType from './components/DropdownLocationType.svelte';
-
+    import Infobar from './components/Infobar.svelte';
 
     export let requestLocationType;
 
@@ -218,6 +218,23 @@
         padding: 8px;
     }
 
+    a#source-code {
+        text-decoration: none;
+        width: auto;
+        color: rgb(0, 133, 71);
+        background-color: transparent;
+        font-size: 16px;
+    }
+
+    div.source-code {
+        border: 0px;
+    }
+
+    div#footer {
+        position: absolute;
+        bottom: 10px; left: 10px;
+    }
+
     @media only screen and (max-width: 900px) {
         div.controls-container {
             width: auto;
@@ -251,5 +268,11 @@
             {/if}
         </div>
         <Recommendation recommendations={recommendationPayload} />
+        <div id="footer" class="leaflet-bar leaflet-control" >
+            <div class="leaflet-bar leaflet-control source-code">
+                <a target="_blank" id="source-code" href="https://github.com/sabaimran/random-recommender">Source Code</a>
+            </div>
+            <Infobar />
+        </div>
 	</div>
 </div>
