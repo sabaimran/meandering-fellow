@@ -7,7 +7,7 @@ import { locationTypeToOverpassQueryMap } from './Constants';
  * @param locationType The type of location the user has queried for.
  */
 export function buildOverpassApiUrl(map, locationType) {
-    var overpassQuery =  locationTypeToOverpassQueryMap[locationType.text];
+    var overpassQuery =  locationTypeToOverpassQueryMap[locationType];
     var bounds = map.getBounds().getSouth() + ',' + map.getBounds().getWest() + ',' + map.getBounds().getNorth() + ',' + map.getBounds().getEast();
     var nodeQuery = 'node[' + overpassQuery + '](' + bounds + ');';
     var wayQuery = 'way[' + overpassQuery + '](' + bounds + ');';
@@ -22,24 +22,7 @@ export function buildOverpassApiUrl(map, locationType) {
  * Retrieve the dropdown list based on the mapping of supported queries.
  */
  export function getDropdownList() {
-    let listOfKeys = Object.keys(locationTypeToOverpassQueryMap);
-
-    return listOfKeys.map((val, index) => { 
-        return { idx: index, text: val}
-    });
-}
-
-/***
- * Reverse lookup the index based on the target key.
- */
-export function getIdxOfKey(key) {
-    for (var elem of getDropdownList()) {
-        if (elem.text == key) {
-            return elem;
-        }
-    }
-
-    return null;
+    return Object.keys(locationTypeToOverpassQueryMap);
 }
 
 // Construct the API request to Geocode to find the user's location.

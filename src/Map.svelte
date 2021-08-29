@@ -1,11 +1,14 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { fade } from 'svelte/transition';
     import * as L from 'leaflet';
+
 	import * as Constants from './common/Constants';
     import * as MapHelper from './common/MapHelper';
     import osmtogeojson from './common/osmtogeojson';
     import Recommendation from './components/RecommendationList.svelte';
-    import { fade } from 'svelte/transition';
+    import DropdownLocationType from './components/DropdownLocationType.svelte';
+
 
     export let requestLocationType;
 
@@ -21,19 +24,14 @@
     let isLoading = false;
     let cityName = "";
     let mapContainer = null;
-    let locationType = null;
     let locationOptions = MapHelper.getDropdownList();
+    let locationType =  Constants.locationTypeToOverpassQueryMap[requestLocationType] ? requestLocationType : locationOptions[0];
     let recommendationPayload = null;
 
     // Query the user's location on mount.
     onMount(async() => {
-        initializeLocationType();
 		await getUserLocation();
 	})
-
-    function initializeLocationType() {
-        locationType = MapHelper.getIdxOfKey(requestLocationType) ?? locationOptions[0];
-    }
 
     // Initialize the map.
     function createMap(latitude, longitude) {
@@ -48,8 +46,6 @@
         return m;
     }
 
-    $: console.log(locationType);
-
     // Listener to update the map's coordinates any time the latitude or longitude are touched.
     $: if (map != null) {
         map.setView([latitude, longitude], zoom);
@@ -59,7 +55,6 @@
     $: if (map == null) {
         if (latitude && longitude) {
             map = createMap(latitude, longitude);
-            getSuggestion();
         }
     }
 
@@ -169,7 +164,6 @@
     // Setup the map.
     function mapAction(container) {
         mapContainer = container;
-
         getUserLocation();
     }
 </script>
@@ -233,13 +227,7 @@
             <input id="custom-city" type="text" placeholder="Seattle" bind:value={cityName}>
             <button on:click={customCity}>Find me</button>
 
-            <select bind:value={locationType}>
-                {#each locationOptions as locationOption}
-                    <option value={locationOption}>
-                        {locationOption.text}
-                    </option>
-                {/each}
-            </select>
+            <DropdownLocationType bind:locationType />
 
             <button on:click={getSuggestion}>I'm feeling lucky</button>
             {#if isLoading}
