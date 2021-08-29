@@ -1,6 +1,7 @@
 <!-- 
     @component
-    The Map component. This is a full screen component, which effectively acts as a background for this single page web app. 
+    # The Map component.
+    This is a full screen component, which effectively acts as the home page for this single page web app. It also contains the scaffolding for the user input box.
     This component manages much of the rendering layer for the leaflet map. 
     It also handles the user's location, either retrieving it from the browser or from a custom city input, and correspondingly updating the map coordinates.
  -->

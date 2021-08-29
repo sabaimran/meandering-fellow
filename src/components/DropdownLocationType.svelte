@@ -1,6 +1,7 @@
 <!--
     @component
-    The dropdown menu, which can be used to select which type of location to query for.
+    # The dropdown menu
+    This component is used to select which type of location to query for. It should come pre-populated with the starter selected option.
 -->
 
 <script lang="ts">

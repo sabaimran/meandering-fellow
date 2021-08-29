@@ -1,5 +1,6 @@
 <!-- 
     @component 
+    # Recommendation List
     This component manages a list of recommendations being surfaced to the user.
  -->
 <script lang="ts">
