@@ -1,6 +1,11 @@
 import { locationTypeToOverpassQueryMap } from './Constants';
 
-// Construct the API request to Overpass to get the nodes in the user's map.
+/***
+ * Construct the api request to Overpass to get the nodes to render in the user's map.
+ * 
+ * @param map The map rendered on the main UI
+ * @param locationType The type of location the user has queried for.
+ */
 export function buildOverpassApiUrl(map, locationType) {
     var overpassQuery =  locationTypeToOverpassQueryMap[locationType.text];
     var bounds = map.getBounds().getSouth() + ',' + map.getBounds().getWest() + ',' + map.getBounds().getNorth() + ',' + map.getBounds().getEast();
@@ -13,6 +18,30 @@ export function buildOverpassApiUrl(map, locationType) {
     return resultUrl;
 }
 
+/***
+ * Retrieve the dropdown list based on the mapping of supported queries.
+ */
+ export function getDropdownList() {
+    let listOfKeys = Object.keys(locationTypeToOverpassQueryMap);
+
+    return listOfKeys.map((val, index) => { 
+        return { idx: index, text: val}
+    });
+}
+
+/***
+ * Reverse lookup the index based on the target key.
+ */
+export function getIdxOfKey(key) {
+    for (var elem of getDropdownList()) {
+        if (elem.text == key) {
+            return elem;
+        }
+    }
+
+    return null;
+}
+
 // Construct the API request to Geocode to find the user's location.
 export function buildGeocodeApiUri(cityName) {
     return  "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
@@ -20,8 +49,6 @@ export function buildGeocodeApiUri(cityName) {
 
 // Construct the google maps link using the feature's longitude and latitude.
 export function getGoogleMapsLink(feature) {
-    console.log(feature);
-    console.log(feature.geometry.coordinates);
     if (feature.geometry.type == "Polygon") {
         return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[0][0][1] + "%2C" + feature.geometry.coordinates[0][0][0];
     }

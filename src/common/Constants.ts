@@ -1,3 +1,6 @@
+/**
+ * The supported queries in the drop down. The leading and closing parantheses are supplied in usage to the Overpass API call, so the filters might look a bit wacky.
+ */
 export const locationTypeToOverpassQueryMap = {
     "restaurant": "amenity=restaurant",
     "coffee": "cuisine=coffee_shop][name!=Starbucks",
@@ -6,18 +9,12 @@ export const locationTypeToOverpassQueryMap = {
     "bar": "amenity=bar"
 }
 
-export function getDropdownList() {
-    let listOfKeys = Object.keys(locationTypeToOverpassQueryMap);
-
-    return listOfKeys.map((val, index) => { 
-        return { idx: index, text: val}
-    });
-}
-
 export class Map {
     static urlTemplate = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
     static mapAttribution = `&copy;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
     &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`;
+    static defaultLatitude = 53.079;
+    static defaultLongitude = 8.81308;
 }
 
 export class OSMNode {

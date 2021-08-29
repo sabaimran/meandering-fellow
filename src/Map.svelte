@@ -7,26 +7,33 @@
     import Recommendation from './components/RecommendationList.svelte';
     import { fade } from 'svelte/transition';
 
+    export let requestLocationType;
+
     // Variables used to define the map.
     let map = null;
     var resultLayer = null;
     // Populate with default values.
-    let latitude = 53.079;
-    let longitude = 8.81308;
+    let latitude = null;
+    let longitude = null;
     let zoom = 14;
 
     // Variables used to interact with the UI.
     let isLoading = false;
     let cityName = "";
     let mapContainer = null;
-    let locationType = { idx: 1, text: "restaurant" };
-    let locationOptions = Constants.getDropdownList();
+    let locationType = null;
+    let locationOptions = MapHelper.getDropdownList();
     let recommendationPayload = null;
 
     // Query the user's location on mount.
     onMount(async() => {
+        initializeLocationType();
 		await getUserLocation();
 	})
+
+    function initializeLocationType() {
+        locationType = MapHelper.getIdxOfKey(requestLocationType) ?? locationOptions[0];
+    }
 
     // Initialize the map.
     function createMap(latitude, longitude) {
@@ -35,19 +42,29 @@
             Constants.Map.urlTemplate,
             {
                 attribution: Constants.Map.mapAttribution,
-            subdomains: 'abcd',
-            maxZoom: 20,
-        }).addTo(m);
+                subdomains: 'abcd',
+                maxZoom: 20,
+            }).addTo(m);
         return m;
     }
+
+    $: console.log(locationType);
 
     // Listener to update the map's coordinates any time the latitude or longitude are touched.
     $: if (map != null) {
         map.setView([latitude, longitude], zoom);
+        getSuggestion();
+    }
+
+    $: if (map == null) {
+        if (latitude && longitude) {
+            map = createMap(latitude, longitude);
+            getSuggestion();
+        }
     }
 
     // Interpret the custom city input.
-	async function customCity() {
+	const customCity = async () => {
         isLoading = true;
         
         // If the user hasn't entered a custom city name, try to find them based on their browser location data.
@@ -84,6 +101,9 @@
 	function failLocation(err) {
 		console.warn(`ERROR(${err.code}): ${err.message}`);
 		isLoading = false;
+
+        latitude = Constants.Map.defaultLatitude;
+        longitude = Constants.Map.defaultLongitude;
 	}
 
     // Get the user's location.
@@ -150,12 +170,7 @@
     function mapAction(container) {
         mapContainer = container;
 
-        map = createMap(latitude, longitude);
-        return {
-            destroy: () => {
-                map.remove();
-            },
-        };
+        getUserLocation();
     }
 </script>
   
