@@ -1,3 +1,7 @@
+<!-- 
+    @component 
+    This component manages a list of recommendations being surfaced to the user.
+ -->
 <script lang="ts">
     import Recommendation from "./Recommendation.svelte";
     import { fly } from 'svelte/transition';

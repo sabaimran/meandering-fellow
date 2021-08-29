@@ -1,3 +1,9 @@
+<!-- 
+    @component
+    The Map component. This is a full screen component, which effectively acts as a background for this single page web app. 
+    This component manages much of the rendering layer for the leaflet map. 
+    It also handles the user's location, either retrieving it from the browser or from a custom city input, and correspondingly updating the map coordinates.
+ -->
 <script lang="ts">
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
@@ -33,7 +39,11 @@
 		await getUserLocation();
 	})
 
-    // Initialize the map.
+    /**
+     * Initialize the map.
+     * @param latitude the latitude.
+     * @param longitude the longitude.
+     */
     function createMap(latitude, longitude) {
         let m = L.map(mapContainer, { zoomControl: false }).setView([latitude, longitude], zoom);
         L.tileLayer(
@@ -58,7 +68,11 @@
         }
     }
 
-    // Interpret the custom city input.
+    /**
+     * Interpret the custom city input. 
+     * If some input is provided, reverse lookup the lat long coordinates. 
+     * If no input is provided, try to get the user location from the browser again.
+     */
 	const customCity = async () => {
         isLoading = true;
         
@@ -139,6 +153,7 @@
             })
     }
 
+    // Render the suggestion on the map.
     function renderSuggestion(resultAsGeojson) {
 
         // Clear the result layer between every render.

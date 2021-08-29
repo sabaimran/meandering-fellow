@@ -1,3 +1,8 @@
+<!-- 
+    @component 
+    This represents an individual recommendation component that pops up when a recommendation is surfaced to the user. 
+    This component is not rendered within the map layer itself, but rather as an overlay on top of it.
+ -->
 <script lang="ts">
     import { getGoogleMapsLink } from "../common/MapHelper";
     import * as Constants from '../common/Constants';

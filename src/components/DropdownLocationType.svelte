@@ -1,3 +1,8 @@
+<!--
+    @component
+    The dropdown menu, which can be used to select which type of location to query for.
+-->
+
 <script lang="ts">
     import * as MapHelper from '../common/MapHelper';
 

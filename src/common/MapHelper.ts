@@ -25,12 +25,20 @@ export function buildOverpassApiUrl(map, locationType) {
     return Object.keys(locationTypeToOverpassQueryMap);
 }
 
-// Construct the API request to Geocode to find the user's location.
+/***
+ * Build the api url to geocode for looking up the lat long coordinates from a city name.
+ * @param cityName the city name.
+ * @returns the constructed api url.
+ */
 export function buildGeocodeApiUri(cityName) {
     return  "https://geocode.xyz/?locate=" + encodeURIComponent(cityName) + "&geoit=json";
 }
 
-// Construct the google maps link using the feature's longitude and latitude.
+/**
+ * Construct the google maps link using the feature's longitude and latitude.
+ * @param feature The feature to be rendered.
+ * @returns The google maps link for the feature.
+ */
 export function getGoogleMapsLink(feature) {
     if (feature.geometry.type == "Polygon") {
         return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[0][0][1] + "%2C" + feature.geometry.coordinates[0][0][0];
@@ -39,7 +47,11 @@ export function getGoogleMapsLink(feature) {
     return "https://www.google.com/maps/search/?api=1&query=" + feature.geometry.coordinates[1] + "%2C" + feature.geometry.coordinates[0];
 }
 
-// Construct the pop-up bubbles that are used to render the returned result.
+/**
+ * Construct the pop-up bubbles that are used to render the returned result.
+ * @param feature The feature to be rendered
+ * @returns The HTML element of the pop-up to be rendered on top of the leaflet map.
+ */
 export function getPopUpBubble(feature) {
     var popupContent = "<div class=\"pop-up-content-info\">";
     popupContent = popupContent + "<div>@id</div><div>" + feature.properties.id + "</div>";
