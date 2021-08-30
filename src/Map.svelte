@@ -150,7 +150,8 @@
 				renderSuggestion(osmtogeojson(osmDataAsJson));
 			})
             .catch((error) => {
-                failLocation(error);
+                console.warn(`ERROR Rendering suggestion (${error.code}): ${error.message}`);
+		        isLoading = false;
             })
     }
 
