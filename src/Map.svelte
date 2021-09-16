@@ -271,7 +271,7 @@
         <Recommendation recommendations={recommendationPayload} />
         <div id="footer" class="leaflet-bar leaflet-control" >
             <div class="leaflet-bar leaflet-control source-code">
-                <a target="_blank" id="source-code" href="https://github.com/sabaimran/random-recommender">Source Code</a>
+                <a target="_blank" id="source-code" href="https://github.com/sabaimran/meandering-fellow">Source Code</a>
             </div>
             <Infobar />
         </div>
