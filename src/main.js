@@ -1,22 +1,13 @@
-import Map from './Map.svelte';
-
-/**
- * Retrieve relevant query parameters on app initialization.
- * @returns The query parameter mapping to 'type'
- */
-function processQueryParams() {
-	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get('type');
-}
+import App from './App.svelte';
 
 /**
  * The main entry point for the app.
  */
-const app = new Map({
+const app = new App({
 	target: document.body,
-	props: {
-		requestLocationType: processQueryParams()
-	}
+	hydrate: true,
 });
+
+console.log('hello are you here?');
 
 export default app;
