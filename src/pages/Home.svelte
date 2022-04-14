@@ -1,3 +1,10 @@
+<!-- 
+    @component
+    # The Home component.
+    This is the home page for the application. It doesn't really do much, but it's a good place to start.
+ -->
+
+
 <h1 class="header">Home</h1>
 <p class="description">Welcome to my Meandering Fellow! Use this website as your buddy in random exploration. Explore options in the menu above.</p>
 
