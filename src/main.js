@@ -8,6 +8,4 @@ const app = new App({
 	hydrate: true,
 });
 
-console.log('hello are you here?');
-
 export default app;

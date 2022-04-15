@@ -19,9 +19,6 @@
 
     export let requestLocationType;
 
-    console.log('requestlocationtype: ', requestLocationType);
-    console.log($$props);
-
     // Variables used to define the map.
     let map = null;
     var resultLayer = null;
