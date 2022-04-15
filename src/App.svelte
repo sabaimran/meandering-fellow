@@ -5,8 +5,7 @@
  -->
 
 <script lang="ts">
-    import { Router, Route } from "svelte-routing";
-    import NavLink from "./components/NavLink.svelte";
+    import { Router, Route, Link } from "svelte-routing";
     import Map from "./pages/Map.svelte"
     import Home from "./pages/Home.svelte"
   
@@ -19,13 +18,15 @@
   
 <Router url="{url}">
     <nav id="menu">
-      <NavLink to="/map">Map</NavLink>
+      <Link to="/map">
+        Map
+      </Link>
     </nav>
     <div id="page">
-      <Route path="/map/:type" let:params>
-        <Map requestLocationType={params.type} />
+      <Route path="map/:type" let:params>
+        <Map requestLocationType="{params.type}"/>
       </Route>
-      <Route path="/map/" >
+      <Route path="map/" let:params>
         <Map requestLocationType={DEFAULT_TYPE} />
       </Route>
       <Route path="/" component="{Home}" />
