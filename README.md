@@ -1,27 +1,43 @@
-# Meandering Fellow!
+# [Meandering Fellow](https://meandering-fellow.vercel.app/)
+![GitHub deployments](https://img.shields.io/github/deployments/sabaimran/meandering-fellow/production?label=deploy&logo=vercel&style=flat-square)
 
-[Meander](https://meandering-fellow.vercel.app/)
+## Introduction
+> Increase Exploration, Reduce Decisions 🚶🏽‍♀
 
-It's fruitful to leave some decision-making to randomization in order to satisfy some of our inherent desire to explore. Especially if you've been settled in a city for some time, randomizing some aspects of life can help you get to see some more of those nooks and crannies in the city you don't ordinarily visit. Many of us also suffer from  decision fatigue, wanting to streamline the selection amongst ever-increasing choices.
+It's fruitful to leave some decisions to randomness, it encourages exploration and reduces decision fatigue.
 
-Meandering Fellow gives you random suggestions without any fore knowledge, based on the area presented in the map. You can look for places like restaurants, coffee shops, or parks. 
+- If you want to explore a city, randomize the next bookstore or park you visit.
+  You'll get to see those nooks and crannies of the city you wouldn't ordinarily visit.
 
-All of the logic for this app is purely being processed on the client side :). For any comments or suggestions, add an issue. I'm actively monitoring for feature requests, suggestions, or bugs.
+- If you want to reduce decision fatigue, and take a break from an ever-increasing set of choices.
+  Tradeoff a bit of optimization for exploration and reduced decisions.
+  Randomize the next restaurant, bar or coffee shop you visit.
 
-## Deploy locally
 
-```bash
-git clone <repository url>
-cd random-recommender
-npm install
-npm run dev
-```
+Meandering Fellow gives random location recommendations based on the visible area in the map. You can look for places like restaurants, bars, coffee shops, bookstores or parks.
 
-Open up [localhost:5000](http://localhost:5000). You should see Meandering Fellow running. Edit a component file in `src`, save it, and the page should automatically reload with your changes.
+All of the logic for this app is purely being processed on the client side 🙂. For any comments or suggestions, add an issue. I'm actively monitoring for feature requests, suggestions, or bugs.
 
-## See it live!
 
-Deployed with Vercel. [See site](https://meandering-fellow.vercel.app/).
+## Development
+
+1. **Install**
+
+   ```bash
+   git clone <repository url>
+   cd random-recommender
+   npm install
+   npm run dev
+   ```
+
+2. **Access**
+
+   Open [localhost:5000](http://localhost:5000) on your browser. You should see Meandering Fellow running.
+
+3. **Develop**
+
+   Edit a component file in `src`, save it, and the page should automatically reload with your changes.
+
 
 ## References
 - [Leaflet](https://leafletjs.com/) for rendering the map.

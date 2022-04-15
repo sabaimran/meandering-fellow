@@ -5,7 +5,7 @@
     This component manages much of the rendering layer for the leaflet map. 
     It also handles the user's location, either retrieving it from the browser or from a custom city input, and correspondingly updating the map coordinates.
  -->
-<script lang="ts">
+<script lang="js">
     import { onMount } from 'svelte';
     import { fade } from 'svelte/transition';
     import * as L from 'leaflet';
@@ -211,11 +211,6 @@
         width: 30vw;
     }
 
-    div.leaflet-bar.title {
-        font-size: 30px;
-        border: 0px;
-    }
-
     div.controls-container {
         padding: 8px;
     }
@@ -257,7 +252,6 @@
   
 <div id="map" use:mapAction>
     <div class="controls-container">
-        <div class="leaflet-bar leaflet-control title">Meandering Fellow</div>
         <div id="controls-options" class="leaflet-bar leaflet-control">
             <input id="custom-city" type="text" placeholder="Seattle" bind:value={cityName}>
             <button on:click={customCity}>Find me</button>
