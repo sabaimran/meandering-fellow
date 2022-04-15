@@ -2,10 +2,11 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "private": true,
+  "svelte": "src/main.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear --single"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -28,6 +29,7 @@
     "@types/leaflet": "^1.7.4",
     "leaflet": "^1.7.1",
     "sirv-cli": "^1.0.0",
+    "svelte-routing": "^1.6.0",
     "tslib": "^2.3.1"
   }
 }

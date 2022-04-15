@@ -10,18 +10,19 @@
     import { fade } from 'svelte/transition';
     import * as L from 'leaflet';
 
-	import * as Constants from './common/Constants';
-    import * as MapHelper from './common/MapHelper';
-    import osmtogeojson from './common/osmtogeojson';
-    import Recommendation from './components/RecommendationList.svelte';
-    import DropdownLocationType from './components/DropdownLocationType.svelte';
-    import Infobar from './components/Infobar.svelte';
+	import * as Constants from '../common/Constants';
+    import * as MapHelper from '../common/MapHelper';
+    import osmtogeojson from '../common/osmtogeojson';
+    import Recommendation from '../components/RecommendationList.svelte';
+    import DropdownLocationType from '../components/DropdownLocationType.svelte';
+    import Infobar from '../components/Infobar.svelte';
 
     export let requestLocationType;
 
     // Variables used to define the map.
     let map = null;
     var resultLayer = null;
+
     // Populate with default values.
     let latitude = null;
     let longitude = null;

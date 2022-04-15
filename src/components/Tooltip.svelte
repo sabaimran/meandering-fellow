@@ -18,7 +18,6 @@
 
 	function mouseMove(event) {
 		isHovered = true;
-		// console.log(event.pageX, event.pageY);
 		x=0;
 		y=-400;
 	}
