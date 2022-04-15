@@ -4,7 +4,7 @@
     This is the component that hosts the main routing for the application.
  -->
 
-<script lang="ts">
+<script lang="js">
     import { Router, Route, Link } from "svelte-routing";
     import Map from "./pages/Map.svelte"
     import Home from "./pages/Home.svelte"
@@ -17,10 +17,13 @@
 </script>
   
 <Router url="{url}">
-    <nav id="menu">
-      <Link to="/map">
-        Map
-      </Link>
+    <nav id="titlebar">
+      <div id="title">
+        <Link to="/" class="titlebar">Meandering Fellow</Link>
+      </div>
+      <div id="menu">
+        <Link to="/map" class="titlebar">Map</Link>
+      </div>
     </nav>
     <div id="page">
       <Route path="map/:type" let:params>
@@ -34,10 +37,35 @@
 </Router>
 
 <style>
+  #titlebar {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "title menu";
+    grid-gap: 8px;
+    align-items: left;
+    justify-items: left;
+    background-color: #3ee4c0;
+    padding: 8px;
+    border-bottom: 1px solid #d3d3d3;
+  }
+
+  #title {
+    grid-area: title;
+    align-self: left;
+    justify-self: left;
+
+    font-size: 32px;
+    text-decoration: none;
+  }
+
   #menu {
+    grid-area: menu;
+    align-self: right;
+    justify-self: right;
+
     display: grid;
     gap: 8px;
     padding: 12px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 </style>

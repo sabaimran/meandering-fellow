@@ -27,6 +27,11 @@ a:visited {
 	color: rgb(0,80,160);
 }
 
+a.titlebar {
+    color: #333;
+	text-decoration: none;
+}
+
 div.pop-up-content-info {
 	display: grid;
 	grid-template-columns: 1fr 4fr;
