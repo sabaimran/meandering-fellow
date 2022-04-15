@@ -45,7 +45,7 @@
     align-items: left;
     justify-items: left;
     background-color: #3ee4c0;
-    padding: 8px;
+    padding: 4px 32px;
     border-bottom: 1px solid #d3d3d3;
   }
 
@@ -54,7 +54,7 @@
     align-self: left;
     justify-self: left;
 
-    font-size: 32px;
+    font-size: 36px;
     text-decoration: none;
   }
 
@@ -67,5 +67,7 @@
     gap: 8px;
     padding: 12px;
     grid-template-columns: repeat(1, 1fr);
+
+    font-size: 20px;
   }
 </style>
