@@ -2,7 +2,7 @@
 ![GitHub deployments](https://img.shields.io/github/deployments/sabaimran/meandering-fellow/production?label=deploy&logo=vercel&style=flat-square)
 
 ## Introduction
-> Increase Exploration, Reduce Decisions 🚶🏽‍♀
+> Increase Exploration, Reduce Decisions 🚶‍♀️
 
 It's fruitful to leave some decisions to randomness, it encourages exploration and reduces decision fatigue.
 

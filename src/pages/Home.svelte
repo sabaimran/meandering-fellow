@@ -9,14 +9,14 @@
     <div class="section-title">Microdosing on Randomness</div>
         <div class="section-subtitle">Increase Exploration, Reduce Decisions 🚶‍♀️</div>
         <p>
-            Welcome Meandering Fellow!
+            Welcome, Meandering Fellow!
             Use this site to explore your <a href=/map>neighborhood</a> <a href=/map/restaurant>restaurants</a>, <a href="/map/bar">bars</a>, <a href="/map/coffee">coffee shops</a>, <a href="/map/park">parks</a> or <a href="/map/bookstore">bookstores</a>.
         </p>
     </div>
 
     <div class="section">
         <div class="section-title">Why should I randomize?</div>
-        <p>Leave some decisions to randomness. It will encourage exploration and reduce decision fatigue.</p>
+        <p>Leaving some decisions to randomness will encourage exploration and reduce decision fatigue.</p>
 
         <ul>
             <li>
@@ -46,9 +46,14 @@
     }
     .section-title {
         font-size: 24px;
+        font-weight: normal;
     }
     .section-subtitle {
         font-size: 16px;
         font-style: italic;
+    }
+
+    .section {
+        font-weight: lighter;
     }
 </style>

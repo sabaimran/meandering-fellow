@@ -56,6 +56,7 @@
 
     font-size: 36px;
     text-decoration: none;
+    font-weight: lighter;
   }
 
   #menu {
